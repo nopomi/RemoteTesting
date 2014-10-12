@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dbsaver;
+package max.Appledore.dbsaver;
 
 import java.util.ArrayList;
+import max.Appledore.container.ArticleContainer;
 import max.Appledore.domain.Article;
 
 /**
@@ -14,12 +15,8 @@ import max.Appledore.domain.Article;
  */
 public class ArticleSaver {
 
-    public void storeArticles(ArrayList<Article> articles) {
-
-        for (Article article : articles) {
-
+    public void saveArticles(ArticleContainer articles) {
             //put the code for inserting the information to the database here.
-        }
 
     }
 

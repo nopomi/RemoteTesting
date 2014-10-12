@@ -9,7 +9,9 @@ package max.Appledore.fetcher;
  *
  * @author FunkyO
  */
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.xml.parsers.DocumentBuilder;
@@ -18,10 +20,13 @@ import max.Appledore.container.ArticleContainer;
 import max.Appledore.container.SourceContainer;
 import max.Appledore.domain.Article;
 import max.Appledore.domain.Source;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
 import org.w3c.dom.NodeList;
+
 
 public class Fetcher {
 
@@ -35,7 +40,7 @@ public class Fetcher {
 
             try {
                 DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                Document doc = builder.parse(source.getUrl().openStream());
+                Document doc = builder.parse(source.getUrl());
 
                 NodeList items = doc.getElementsByTagName("item");
 
@@ -44,14 +49,15 @@ public class Fetcher {
                     String title = getValue(item, "title");
                     String articleURL = getValue(item, "link");
                     String shortText = getValue(item, "description");
-                    String imageURL = getValue(item, "image"); // not working yet, needs to be modified to get item child for image url
+//                    String imageURL = getValue(item, "image"); // not working yet, needs to be modified to get item child for image url
                     String timestamp = getValue(item, "pubDate");
-                    Date time = DateFormat.parse(timestamp);
-                    Timestamp stamp = new Timestamp(time.getYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds(), 0);
-
+//                    Date time = DateFormat.parse(timestamp);
+//                    Timestamp stamp = new Timestamp(time.getYear(), time.getMonth(), time.getDay(), time.getHours(), time.getMinutes(), time.getSeconds(), 0);
+                    Timestamp stamp = null;
+                    String imageURL = "http://www.hallaminternet.com/assets/URL-tagging-image.png";
                     String longText = getFullArticleText(source.getUrl(), source.getTag());
 
-                    articles.addArticle(new Article(title, articleURL, shortText, longText, imageURL, stamp);
+                    articles.addArticle(new Article(title, articleURL, shortText, longText, imageURL, stamp));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,11 +76,19 @@ public class Fetcher {
     }
 
     public String getFullArticleText(String URL, String bodyTag) {
-        Document doc = Jsoup.connect(URL).get();
-        Element articleText = doc.select(bodyTag);
+        Document doc;
+        String fullText = "";
+        try {
+            doc = Jsoup.connect(URL).get();
+            Elements articleText = doc.select(bodyTag);
+            System.out.println(articleText.size());
+            fullText = articleText.first().toString();
+            System.out.println(fullText);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }   
+        return fullText;
 
-        return 
-    
     }
 
 }

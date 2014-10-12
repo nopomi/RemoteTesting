@@ -5,6 +5,7 @@
  */
 package max.Appledore.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -76,7 +77,7 @@ public class Article {
     }
 
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.timestamp = (Timestamp) timestamp;
     }
 
 }

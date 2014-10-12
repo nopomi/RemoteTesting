@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dbretriever;
+package max.Appledore.dbretriever;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -61,10 +61,11 @@ public class SourceRetriever {
             while (rs1.next()) {
 
                 // REMEMBER TO CHECK SOURCE URL BELOW!!
-                int sourceid = rs1.getInt("SourceID");
-                String sourceurl = rs1.getString("SourceURL");
+                int sourceId = rs1.getInt("SourceID");
+                String sourceURL = rs1.getString("SourceURL");
+                String sourceTag = rs1.getString("SourceTag");
 
-                Source source = new Source(sourceurl, sourceid);
+                Source source = new Source(sourceURL, sourceId, sourceTag);
 
                 this.container.addSource(source);
 

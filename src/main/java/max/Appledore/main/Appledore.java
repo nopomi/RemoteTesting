@@ -5,8 +5,8 @@
  */
 package max.Appledore.main;
 
-import dbretriever.SourceRetriever;
-import dbsaver.ArticleSaver;
+import max.Appledore.dbretriever.SourceRetriever;
+import max.Appledore.dbsaver.ArticleSaver;
 import max.Appledore.container.ArticleContainer;
 import max.Appledore.container.SourceContainer;
 import max.Appledore.domain.Source;
@@ -38,8 +38,12 @@ public class Appledore {
     public static void run(Fetcher fetcher, ArticleSaver saver) {
         while (true) {
             ArticleContainer articles = fetcher.fetchArticles();
-            saver.save(articles);
+            saver.saveArticles(articles);
+            try {
             Thread.sleep(3600000);
+            } catch (InterruptedException e) {
+            e.printStackTrace();
+            }
         }
     }
 
