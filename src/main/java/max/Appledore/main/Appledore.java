@@ -32,6 +32,7 @@ public class Appledore {
         fetcher.setSources(sources);
 
         run(fetcher, saver);
+        
 
     }
 
@@ -39,6 +40,8 @@ public class Appledore {
         while (true) {
             ArticleContainer articles = fetcher.fetchArticles();
             saver.saveArticles(articles);
+            System.out.println(articles.getArticles().get(0));
+            
             try {
             Thread.sleep(3600000);
             } catch (InterruptedException e) {
@@ -50,6 +53,7 @@ public class Appledore {
     public static void testInitialization(SourceContainer sources) {
         Source source1 = new Source("http://feeds.bbci.co.uk/news/technology/rss.xml", 1, "div.story-body p");
         sources.addSource(source1);
+        
 
     }
 

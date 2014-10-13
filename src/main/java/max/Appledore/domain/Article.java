@@ -79,5 +79,9 @@ public class Article {
     public void setTimestamp(Date timestamp) {
         this.timestamp = (Timestamp) timestamp;
     }
+    
+    public String toString() {
+        return this.title + "\n" + this.shortText + "\n" + this.longText + "\n" + this.imageURL + " \n" + this.articleURL;
+    }
 
 }
