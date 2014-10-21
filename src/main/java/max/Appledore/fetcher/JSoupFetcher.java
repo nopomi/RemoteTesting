@@ -33,15 +33,10 @@ public class JSoupFetcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        fullText = removeTags(fullText);
+
         return fullText;
     }
     
-//    public String removeTags(String fullText) {
-//        
-//    
-//    }
-//    
     
     
 }

@@ -5,10 +5,11 @@
  */
 package max.Appledore.main;
 
-import max.Appledore.dbretriever.SourceRetriever;
-import max.Appledore.dbsaver.ArticleSaver;
 import max.Appledore.container.ArticleContainer;
 import max.Appledore.container.SourceContainer;
+import max.Appledore.dbretriever.SourceRetriever;
+import max.Appledore.dbsaver.ArticleSaver;
+import max.Appledore.domain.Article;
 import max.Appledore.domain.Source;
 import max.Appledore.fetcher.Fetcher;
 
@@ -40,7 +41,10 @@ public class Appledore {
         while (true) {
             ArticleContainer articles = fetcher.fetchArticles();
             saver.saveArticles(articles);
-            System.out.println(articles.getArticles().get(0));
+            for (Article article : articles.getArticles()) {
+                System.out.println(article.toString());
+            }
+            
             
             try {
             Thread.sleep(3600000);
@@ -51,9 +55,10 @@ public class Appledore {
     }
 
     public static void testInitialization(SourceContainer sources) {
-        Source source1 = new Source("http://feeds.bbci.co.uk/news/technology/rss.xml", 1, "div.story-body p");
+        Source source1 = new Source("http://feeds.bbci.co.uk/news/world/europe/rss.xml", 1, "div.story-body p");
+        Source source2 = new Source("http://feeds.reuters.com/reuters/technologyNews", 2, "span.focusParagraph p");
         sources.addSource(source1);
-        
+        sources.addSource(source2);       
 
     }
 

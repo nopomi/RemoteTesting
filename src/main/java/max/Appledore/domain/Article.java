@@ -19,9 +19,9 @@ public class Article {
     private String shortText;
     private String longText;
     private String imageURL;
-    private Timestamp timestamp;
+    private Date timestamp;
 
-    public Article(String title, String articleURL, String shortText, String longText, String imageURL, Timestamp timestamp) {
+    public Article(String title, String articleURL, String shortText, String longText, String imageURL, Date timestamp) {
 
         this.title = title;
         this.articleURL = articleURL;
@@ -72,16 +72,17 @@ public class Article {
         this.imageURL = imageURL;
     }
 
-    public Timestamp getTimestamp() {
+    public Date getDate() {
         return this.timestamp;
     }
 
     public void setTimestamp(Date timestamp) {
-        this.timestamp = (Timestamp) timestamp;
+        this.timestamp = timestamp;
     }
     
+    @Override
     public String toString() {
-        return this.title + "\n" + this.shortText + "\n" + this.longText + "\n" + this.imageURL + " \n" + this.articleURL;
+        return this.title + "\n" + this.shortText + "\n" + this.longText + "\n" + this.imageURL + " \n" + this.articleURL + "\n" + this.timestamp + "\n";
     }
 
 }
