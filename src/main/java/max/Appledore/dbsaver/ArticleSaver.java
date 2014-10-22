@@ -8,6 +8,13 @@ package max.Appledore.dbsaver;
 import java.util.ArrayList;
 import max.Appledore.container.ArticleContainer;
 import max.Appledore.domain.Article;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,9 +22,19 @@ import max.Appledore.domain.Article;
  */
 public class ArticleSaver {
 
-    public void saveArticles(ArticleContainer articles) {
-            //put the code for inserting the information to the database here.
+    public void saveArticles(ArticleContainer articles) throws ClassNotFoundException {
+
+        try {
+            String url = "jdbc:msql://200.210.220.1:1114/Demo";
+            Connection conn = DriverManager.getConnection(url, "", ""); //requires url, username and password as parameter
+            Statement st = conn.createStatement();
+            for (Article article : articles.getArticles()) {
+                st.executeUpdate("INSERT INTO articles VALUES ('" + article.getTitle() + "', '" + article.getShortText() + "', '" + article.getLongText() + "', '" + article.getImageURL() + "', '" + article.getArticleURL() + "', '" + article.getDate());                
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
-
 }
