@@ -21,7 +21,7 @@ public class Appledore {
 
     //this class still needs the code for retrieving the sources from the database, 
     //and checking for new Sources on each loop (or on startup, depending on what we decided).
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         SourceRetriever sourceRetriever = new SourceRetriever();
         SourceContainer sources = new SourceContainer();
@@ -31,13 +31,15 @@ public class Appledore {
         ArticleSaver saver = new ArticleSaver();
 
         fetcher.setSources(sources);
-
+        try {
         run(fetcher, saver);
-        
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public static void run(Fetcher fetcher, ArticleSaver saver) {
+    public static void run(Fetcher fetcher, ArticleSaver saver) throws Exception{
         while (true) {
             ArticleContainer articles = fetcher.fetchArticles();
             saver.saveArticles(articles);

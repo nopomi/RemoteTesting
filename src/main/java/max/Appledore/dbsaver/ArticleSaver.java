@@ -29,7 +29,7 @@ public class ArticleSaver {
             Connection conn = DriverManager.getConnection(url, "", ""); //requires url, username and password as parameter
             Statement st = conn.createStatement();
             for (Article article : articles.getArticles()) {
-                st.executeUpdate("INSERT INTO articles VALUES ('" + article.getTitle() + "', '" + article.getShortText() + "', '" + article.getLongText() + "', '" + article.getImageURL() + "', '" + article.getArticleURL() + "', '" + article.getDate());                
+                st.executeUpdate("INSERT INTO articles (CustomerName, ContactName, Address, City, PostalCode, Country) VALUES ('" + article.getTitle() + "', '" + article.getShortText() + "', '" + article.getLongText() + "', '" + article.getImageURL() + "', '" + article.getArticleURL() + "', '" + article.getDate());                
             }
             conn.close();
         } catch (Exception e) {
