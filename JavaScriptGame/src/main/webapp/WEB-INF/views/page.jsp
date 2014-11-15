@@ -8,19 +8,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        
-        <h1>Do you want to play a game?</h1>
-        
-        <p><strong>Questions:</strong></p>
-        
 
-        <p><strong>Ilmoittautumiset</strong></p>
-        
-        <ol>
+        <h1>Do you want to play a game?</h1>
+
+        <p><strong>Questions:</strong></p>
+
+        <form action="/game" method="POST">
             <c:forEach var="question" items="${questions}">
-                <li>${question} </li>
+                <p>${question}</p>
+                <input type="text" name="answer"/>
             </c:forEach>
-        </ol>
+                <br></br>
+            <input type="submit" value="Submit answers"/>
+
+        </form>
 
     </body>
 </html>
