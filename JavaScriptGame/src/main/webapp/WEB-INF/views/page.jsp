@@ -16,11 +16,10 @@
         <form action="/game" method="POST">
             <c:forEach var="question" items="${questions}">
                 <p>${question}</p>
-                <input type="text" name="answer"/>
+                <input name="answer" type="text"/>
             </c:forEach>
                 <br></br>
             <input type="submit" value="Submit answers"/>
-
         </form>
 
     </body>
