@@ -17,6 +17,7 @@ public class Game {
     ArrayList<String> questions;
 
     public Game() {
+        this.questions = new ArrayList<>();
         setQuestions();
     }
 

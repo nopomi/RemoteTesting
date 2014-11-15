@@ -8,23 +8,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-
-        <p><strong>Let's play the game!</strong></p>
         
-        <form action="/guests" method="POST">
-            <p>Nimi:</p>
-            <input type="text" name="name"/>
-            <p>Ruokavalio:</p>
-            <input type="radio" name="menu" value="liha" checked="checked"/>Lihaisa<br/>
-            <input type="radio" name="menu" value="kala"/>Kalaisa<br/>
-            <input type="submit" value="Lisää"/>
-        </form>
+        <h1>Do you want to play a game?</h1>
+        
+        <p><strong>Questions:</strong></p>
+        
 
         <p><strong>Ilmoittautumiset</strong></p>
         
         <ol>
-            <c:forEach var="guest" items="${guests}">
-                <li>${guest.name} (${guest.menu}) <form action="/guests/${guest.id}/delete" method="POST"><input type="submit" value="poista"/></form></li>
+            <c:forEach var="question" items="${questions}">
+                <li>${question} </li>
             </c:forEach>
         </ol>
 
