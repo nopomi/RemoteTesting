@@ -20,8 +20,10 @@
                     <li>${result}</li>
 
                 </c:forEach>
-
+                    
             </ul>
+            <tb></tb>
+            <p>You scored variable out of 3!</p>
         </div>
 
     </body>

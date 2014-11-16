@@ -17,9 +17,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class GameService {
     
-    private String answer1 = "a";
-    private String answer2 = "b";
-    private String answer3 = "c";
+    private String answer1 = "console.log";
+    private String answer2 = "var name = \"Joe\"";
+    private String answer3 = "var numbers = [1,2,3]";
     private ArrayList<String> answers = new ArrayList();
     
     
