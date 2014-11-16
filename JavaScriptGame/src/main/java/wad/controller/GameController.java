@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import wad.domain.Game;
 import wad.domain.Guest;
+import wad.service.GameService;
 
 @Controller
 @RequestMapping("*")
 public class GameController {
+    
+    @Autowired GameService gameService;
     
     private final Game game = new Game();
 
@@ -28,13 +32,25 @@ public class GameController {
         return "/WEB-INF/views/page.jsp";
     }
     
-    @RequestMapping(value = "/game", method = RequestMethod.POST)
-    public String post(HttpServletRequest request){
-        for (String a1 : request.getParameterValues("answer")) {
-            System.out.println(a1);
-        }
-        return "/WEB-INF/views/page.jsp";
+    @RequestMapping(method = RequestMethod.POST)
+    public String post(HttpServletRequest request, Model model){
+        List<Boolean> results = gameService.checkAnswers(request.getParameterValues("answer"));
+        model.addAttribute("results", results);
+        return "/WEB-INF/views/results.jsp";
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+
+    
+    
     
 
 }

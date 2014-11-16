@@ -21,6 +21,11 @@
                 <br></br>
             <input type="submit" value="Submit answers"/>
         </form>
+        <ul>
+            <c:forEach var="result" items="${results}">
+                <li>${result}</li>
+                </c:forEach>
+        </ul>
 
     </body>
 </html>
